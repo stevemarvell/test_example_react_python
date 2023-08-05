@@ -15,7 +15,7 @@ def step_set_name(name):
     return name
 
 
-@when("they run the greeter application", target_fixture="response")
+@when("they are greeted", target_fixture="response")
 def step_run_app(name):
     runner = CliRunner()
     result = runner.invoke(command, [name])
@@ -23,6 +23,6 @@ def step_run_app(name):
     return result.output.strip()
 
 
-@then(parsers.parse('the application should respond with "{expected_response}"'))
+@then(parsers.parse('the greeting is "{expected_response}"'))
 def step_test_response(response, expected_response):
     assert expected_response == response
