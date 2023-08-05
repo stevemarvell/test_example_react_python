@@ -1,9 +1,12 @@
 from flask import jsonify, Blueprint, make_response
 from flask import request as incoming_request
+from flask_cors import CORS
 
 from application import greeting_by_name_query
 
 bp = Blueprint('greeter', __name__)
+
+CORS(bp)
 
 
 @bp.route('/greet', methods=['GET'])

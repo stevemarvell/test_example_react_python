@@ -1,12 +1,12 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
 
-const HelloBob = ({ name }) => {
+const HelloBob = ({ name, greeting }) => {
   const getGreeting = () => {
     if (name.toLowerCase() === 'bob') {
       return 'Hello, Bob!'
     } else {
-      return `Hi, ${name}!`
+      return `${greeting}, ${name}!`
     }
   }
 
