@@ -1,4 +1,4 @@
-from pytest_bdd import scenario, given, when, then, parsers, scenarios
+from pytest_bdd import given, when, then, parsers, scenarios
 from click.testing import CliRunner
 from infrastructure.cli.greeter import main as command
 
