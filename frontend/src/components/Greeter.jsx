@@ -29,7 +29,7 @@ function Greeter() {
     }, [name])
 
     return (
-        <Container className="App">
+        <Container className="Greeter">
             <Row>
                 <Col>
                     {name ? <HelloBob name={name} greeting={greeting}/> : <HelloWorld/>}

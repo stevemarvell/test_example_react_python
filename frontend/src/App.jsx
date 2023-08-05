@@ -2,7 +2,7 @@ import Greeter from "./components/Greeter"
 
 function App() {
   return (
-    <div className="App">
+    <div className="Greeter">
       <Greeter />
     </div>
   )
