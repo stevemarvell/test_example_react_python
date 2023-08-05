@@ -1,4 +1,5 @@
 import React from 'react'
+import { Card } from 'react-bootstrap'
 
 const HelloBob = ({ name }) => {
   const getGreeting = () => {
@@ -10,9 +11,11 @@ const HelloBob = ({ name }) => {
   }
 
   return (
-    <div>
-      <h1 data-testid="greeting">{getGreeting()}</h1>
-    </div>
+    <Card className="my-4">
+      <Card.Body>
+        <Card.Title data-testid="greeting">{getGreeting()}</Card.Title>
+      </Card.Body>
+    </Card>
   )
 }
 

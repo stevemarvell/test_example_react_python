@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Form, Button } from 'react-bootstrap'
 
 const NameForm = ({ setName }) => {
   const [nameInput, setNameInput] = useState('')
@@ -15,19 +16,21 @@ const NameForm = ({ setName }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label>Name:</Form.Label>
+          <Form.Control
             data-testid="name-field"
             type="text"
             value={nameInput}
             onChange={handleInputChange}
             placeholder="Enter your name"
           />
-        </label>
-        <button data-testid="submit-button" type="submit">Submit</button>
-      </form>
+        </Form.Group>
+        <Button data-testid="submit-button" type="submit">
+          Submit
+        </Button>
+      </Form>
     </div>
   )
 }
