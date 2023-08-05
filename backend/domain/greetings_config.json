@@ -1,0 +1,6 @@
+{
+  "greetings": {
+    "bob": "Hello",
+    "default": "Hi"
+  }
+}
