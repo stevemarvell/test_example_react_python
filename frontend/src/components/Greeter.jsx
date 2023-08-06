@@ -9,7 +9,7 @@ const api = axios.create({
     baseURL: 'http://127.0.0.1:5000'
 })
 
-function Greeter() {
+const Greeter = () => {
     const [name, setName] = useState('')
     const [greeting, setGreeting] = useState('')
 
