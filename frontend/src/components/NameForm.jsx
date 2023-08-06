@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import React, {useState} from 'react'
+import {Button, Form} from 'react-bootstrap'
 
-const NameForm = ({ setName }) => {
+const NameForm = ({setName}) => {
   const [nameInput, setNameInput] = useState('')
 
   const handleInputChange = (event) => {

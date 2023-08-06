@@ -3,7 +3,7 @@ import Greeter from "./components/Greeter"
 function App() {
   return (
     <div className="Greeter">
-      <Greeter />
+      <Greeter/>
     </div>
   )
 }

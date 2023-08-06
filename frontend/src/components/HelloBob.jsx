@@ -1,7 +1,7 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
+import {Card} from 'react-bootstrap'
 
-const HelloBob = ({ name, greeting }) => {
+const HelloBob = ({name, greeting}) => {
   const getGreeting = () => {
     if (name.toLowerCase() === 'bob') {
       return 'Hello, Bob!'

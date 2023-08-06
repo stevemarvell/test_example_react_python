@@ -3,46 +3,50 @@ import {Col, Container, Row} from 'react-bootstrap'
 import HelloWorld from './HelloWorld'
 import HelloBob from './HelloBob'
 import NameForm from './NameForm'
-import axios from 'axios'
+import defaultAxios from 'axios'
 
-const api = axios.create({
-    baseURL: 'http://127.0.0.1:5000'
-})
+defaultAxios.defaults.baseURL = 'http://127.0.0.1:5000'
 
-const Greeter = () => {
-    const [name, setName] = useState('')
-    const [greeting, setGreeting] = useState('')
+const Greeter = ( { apiClient } ) => {
 
-    useEffect(() => {
-        if (name) {
-            api
-                .get(`/greet?name=${name}`)
-                .then((response) => {
-                    const d = response.data
-                    console.log(d)
-                    setGreeting(response.data.greeting)
-                })
-                .catch((error) => {
-                    console.error('Error fetching greeting:', error)
-                })
-        }
-    }, [name])
+  const [name, setName] = useState('')
+  const [greeting, setGreeting] = useState('')
 
-    return (
-        <Container className="Greeter">
-            <Row>
-                <Col>
-                    {name ? <HelloBob name={name} greeting={greeting}/> : <HelloWorld/>}
-                </Col>
-            </Row>
-            <hr/>
-            <Row>
-                <Col>
-                    <NameForm setName={setName}/>
-                </Col>
-            </Row>
-        </Container>
-    )
+  useEffect(() => {
+    if (name) {
+      apiClient
+        .get(`/greet?name=${name}`)
+        .then((response) => {
+          const d = response.data
+          console.log(d)
+          setGreeting(response.data.greeting)
+        })
+        .catch((error) => {
+          console.error('Error fetching greeting:', error)
+        })
+    }
+  }, [name])
+
+  return (
+    <Container className="Greeter">
+      <Row>
+        <Col>
+          {name ? <HelloBob name={name} greeting={greeting}/> : <HelloWorld/>}
+        </Col>
+      </Row>
+      <hr/>
+      <Row>
+        <Col>
+          <NameForm setName={setName}/>
+        </Col>
+      </Row>
+    </Container>
+  )
+}
+
+// Set the default prop value for apiClient
+Greeter.defaultProps = {
+  apiClient: defaultAxios,
 }
 
 export default Greeter
