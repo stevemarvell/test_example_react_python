@@ -25,7 +25,7 @@ const Greeter = ( { apiClient } ) => {
           console.error('Error fetching greeting:', error)
         })
     }
-  }, [name])
+  }, [name, apiClient])
 
   return (
     <Container className="Greeter">

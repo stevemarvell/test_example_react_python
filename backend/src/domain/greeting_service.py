@@ -2,7 +2,7 @@ import os
 import json
 
 
-def greeting_by_name(name: str):
+def greeting_by_name(name):
     module_dir = os.path.dirname(os.path.abspath(__file__))
     config_file_path = os.path.join(module_dir, 'greetings_config.json')
 

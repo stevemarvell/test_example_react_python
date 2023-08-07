@@ -7,7 +7,7 @@ router = APIRouter()
 
 # because the prefix is defined in the api
 @router.get("/")
-def greet(name: str):
+def greet(name):
 
     if not name:
         raise HTTPException(status_code=400, detail="Invalid or missing 'name' parameter")
