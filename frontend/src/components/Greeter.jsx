@@ -18,7 +18,6 @@ const Greeter = ( { apiClient } ) => {
         .get(`/greet?name=${name}`)
         .then((response) => {
           const d = response.data
-          console.log(d)
           setGreeting(response.data.greeting)
         })
         .catch((error) => {
