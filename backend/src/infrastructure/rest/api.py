@@ -17,6 +17,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         content={"detail": exc.errors()},
     )
 
+
 origins = [
     "http://localhost",
     "http://localhost:3000",  # front end

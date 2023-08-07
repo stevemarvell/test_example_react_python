@@ -1,10 +1,13 @@
 import pytest
 from fastapi.testclient import TestClient
+
 from infrastructure.rest.api import api
+
 
 @pytest.fixture
 def client():
     return TestClient(api)
+
 
 def test_default_greeting(client):
     response = client.get('/greet?name=Alice')

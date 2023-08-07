@@ -1,5 +1,5 @@
 import pytest
-from fastapi import Query, HTTPException
+from fastapi import HTTPException
 
 from infrastructure.rest.routes.greeter import greet
 

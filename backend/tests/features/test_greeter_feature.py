@@ -1,5 +1,6 @@
-from pytest_bdd import given, when, then, parsers, scenarios
 from click.testing import CliRunner
+from pytest_bdd import given, when, then, parsers, scenarios
+
 from infrastructure.cli.greeter import main as command
 
 scenarios("greeter.feature")

@@ -7,7 +7,7 @@ import defaultAxios from 'axios'
 
 defaultAxios.defaults.baseURL = 'http://127.0.0.1:5000'
 
-const Greeter = ( { apiClient } ) => {
+const Greeter = ({apiClient}) => {
 
   const [name, setName] = useState('')
   const [greeting, setGreeting] = useState('')
