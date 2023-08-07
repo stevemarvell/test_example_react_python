@@ -17,14 +17,13 @@ const Greeter = ( { apiClient } ) => {
       apiClient
         .get(`/greet?name=${name}`)
         .then((response) => {
-          const d = response.data
           setGreeting(response.data.greeting)
         })
         .catch((error) => {
           console.error('Error fetching greeting:', error)
         })
     }
-  }, [name])
+  }, [name, apiClient])
 
   return (
     <Container className="Greeter">
