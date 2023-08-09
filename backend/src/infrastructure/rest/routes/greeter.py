@@ -16,4 +16,4 @@ def greet(name):
     greeting_repository = dependency_manager.greeting_repository()
     greeting = greeting_by_name_query.handle(greeting_repository, name)
 
-    return {"greeting": greeting}, 200
+    return {"greeting": greeting}
