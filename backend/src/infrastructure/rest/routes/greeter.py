@@ -1,6 +1,7 @@
-from flask import jsonify, Blueprint, make_response
+from flask import jsonify, Blueprint
 from flask import request as incoming_request
 from flask_cors import CORS
+from di import dependency_manager
 
 from application import greeting_by_name_query
 
@@ -24,5 +25,7 @@ def greet_process(request):
     if not name or not isinstance(name, str):
         return {"error": "Invalid or missing 'name' parameter"}, 400
 
-    greeting = greeting_by_name_query.handle(name)
+    greeting_repository = dependency_manager.greeting_repository()
+    greeting = greeting_by_name_query.handle(greeting_repository, name)
+
     return {"greeting": greeting}, 200
