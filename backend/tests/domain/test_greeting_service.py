@@ -1,15 +1,19 @@
+from unittest.mock import Mock
 import pytest
 
-from domain.greeting_service import greeting_by_name
+from domain import greeting_service
 
+@pytest.fixture
+def mock_greeting_repository():
+    return Mock()
 
-@pytest.mark.parametrize("name, expected_greeting", [("Bob", "Hello"), ("Alice", "Hi")])
-def test_bob_non_bob(name, expected_greeting):
-    result = greeting_by_name(name)
-    assert result == expected_greeting
+def test_get_greeting_for_name(mock_greeting_repository):
 
+    name = "Alice"
+    expected_greeting = "Good day, Alice!"
 
-@pytest.mark.parametrize("name, expected_greeting", [("Bob", "Hello"), ("bob", "Hello")])
-def test_caseless(name, expected_greeting):
-    result = greeting_by_name(name)
-    assert result == expected_greeting
+    mock_greeting_repository.get_greeting_by_name.return_value = expected_greeting
+
+    actual_greeting = greeting_service.greeting_by_name(mock_greeting_repository, name)
+
+    assert expected_greeting == actual_greeting
