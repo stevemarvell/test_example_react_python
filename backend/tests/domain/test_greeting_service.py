@@ -1,7 +1,9 @@
 from unittest.mock import Mock
+
 import pytest
 
 from domain import greeting_service
+
 
 @pytest.fixture
 def mock_greeting_repository():
