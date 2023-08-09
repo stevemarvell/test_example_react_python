@@ -1,12 +1,19 @@
 import pytest
 from fastapi import HTTPException
+from unittest.mock import Mock, patch
 
 from infrastructure.rest.routes.greeter import greet
 
 
 def test_greet_user_valid_name():
-    response = greet("Bob")
-    assert response == {"greeting": "Hello"}
+
+    expected_greeting = "Cabbage"
+
+    mock_greeting_repository = Mock()
+    mock_greeting_repository.get_greeting_by_name.return_value = expected_greeting
+
+    response = greet("Bob", mock_greeting_repository)
+    assert response == {"greeting": expected_greeting}
 
 
 def test_greet_user_invalid_name():
