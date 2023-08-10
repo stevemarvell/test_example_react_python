@@ -1,4 +1,5 @@
 from click.testing import CliRunner
+
 from infrastructure.cli.greeter import main
 
 
