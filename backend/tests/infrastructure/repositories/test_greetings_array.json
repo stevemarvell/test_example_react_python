@@ -1,0 +1,6 @@
+{
+  "greetings": {
+    "fred": "Hiya",
+    "default": "Hi ho"
+  }
+}

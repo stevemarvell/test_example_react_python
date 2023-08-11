@@ -3,14 +3,14 @@ import json
 
 from domain.greeting_repository import GreetingRepository
 
+
 class GreetingRepositoryArray(GreetingRepository):
 
+    # dependency injection defaulting to local file
+    def __init__(self, greetings_file=f'{os.path.dirname(__file__)}/greetings_array.json'):
+        with open(greetings_file, 'r') as config_file:
+            self.__greetings_data = json.load(config_file)
+
     def get_greeting_by_name(self, name: str) -> str:
-        module_dir = os.path.dirname(os.path.abspath(__file__))
-        config_file_path = os.path.join(module_dir, 'greetings_array.json')
-
-        with open(config_file_path, 'r') as config_file:
-            config = json.load(config_file)
-
-        greeting = config['greetings'].get(name.lower(), config['greetings']['default'])
+        greeting = self.__greetings_data['greetings'].get(name.lower(), self.__greetings_data['greetings']['default'])
         return greeting
