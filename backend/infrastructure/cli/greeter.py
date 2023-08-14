@@ -14,7 +14,7 @@ def main(name):
     greeting_repository = dependency_manager.greeting_repository()
 
     try:
-        greeting = greeting_by_name_query.handle(greeting_repository, { "name": name })
+        greeting = greeting_by_name_query.handle(greeting_repository, {"name": name})
         click.echo(f'{greeting}, {name}!')
     except SchemaError as e:
         click.echo(f"Well that didn't validate!")

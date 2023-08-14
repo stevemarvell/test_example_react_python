@@ -5,7 +5,7 @@ import HelloBob from './HelloBob'
 import NameForm from './NameForm'
 import defaultAxios from 'axios'
 
-defaultAxios.defaults.baseURL = 'http://127.0.0.1:5000'
+defaultAxios.defaults.baseURL = 'http://127.0.0.1:8000'
 
 const Greeter = ({apiClient}) => {
 
