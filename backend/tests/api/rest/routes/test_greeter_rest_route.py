@@ -1,12 +1,12 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from infrastructure.rest.api import api
+from infrastructure.rest.api import app
 
 
 @pytest.fixture
 def client():
-    return TestClient(api)
+    return TestClient(app)
 
 
 def test_default_greeting(client):

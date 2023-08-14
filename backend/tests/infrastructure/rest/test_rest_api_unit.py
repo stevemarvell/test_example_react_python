@@ -1,6 +1,6 @@
 import pytest
 from fastapi import HTTPException
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
 
 from infrastructure.rest.routes.greeter import greet
 

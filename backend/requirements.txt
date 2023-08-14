@@ -1,0 +1,7 @@
+fastapi
+schema
+uvicorn
+injector
+pytest
+pytest-bdd
+httpx

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  api:
+    volumes:
+      - ./backend:/app
+    build:
+      context: backend
+      dockerfile: Dockerfile
+      args:
+        PYTHON_VERSION: ${PYTHON_VERSION}
+    ports:
+      - "3000:3000"
+      - "4000:4000"
+      - "5000:5000"
+      - "8000:8000"
+
