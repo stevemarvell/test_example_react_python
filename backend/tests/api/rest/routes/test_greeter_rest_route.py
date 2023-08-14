@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from infrastructure.rest.api import app
+from infrastructure.fastapi.app import app
 
 
 @pytest.fixture

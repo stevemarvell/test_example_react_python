@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette import status
 from starlette.responses import JSONResponse
 
-from infrastructure.rest.routes.greeter import router as greeter_router
+from infrastructure.fastapi.routes.greeter import router as greeter_router
 
 app = FastAPI()
 
