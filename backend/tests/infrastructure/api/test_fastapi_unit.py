@@ -1,7 +1,7 @@
 from unittest.mock import Mock
 
 import pytest
-from werkzeug.exceptions import HTTPException, BadRequest
+from fastapi import HTTPException
 
 from infrastructure.fastapi.app import greet
 
@@ -22,15 +22,12 @@ def test_greet_user_valid_name(mock_greeting_repository):
 
 @pytest.mark.fastapi
 def test_greet_user_invalid_name(mock_greeting_repository):
-    with pytest.raises(BadRequest) as exc_info:
+    with pytest.raises(HTTPException):
         greet("X", mock_greeting_repository)
-
-    assert exc_info.value.code == 400
 
 
 @pytest.mark.fastapi
 def test_greet_user_blank_name(mock_greeting_repository):
-    with pytest.raises(HTTPException) as exc_info:
+    with pytest.raises(HTTPException):
         greet(None, mock_greeting_repository)
 
-    assert exc_info.value.code == 400

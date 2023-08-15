@@ -1,7 +1,6 @@
 from unittest.mock import Mock
 
 import pytest
-from schema import SchemaError
 from werkzeug.exceptions import BadRequest
 
 from infrastructure.flask.app import greet

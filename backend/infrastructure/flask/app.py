@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from injector import inject
 from schema import SchemaError
-from werkzeug.exceptions import BadRequest, InternalServerError
+from werkzeug.exceptions import BadRequest
 
 
 from application import greeting_by_name_query
@@ -18,23 +18,19 @@ origins = [
 
 CORS(app, origins=origins)
 
+@app.errorhandler(BadRequest)
+def handle_bad_request(e):
+    return jsonify({"detail": "Well we didn't expect that!"}), 400
+
 @app.route('/greet', methods=['GET'])
 @inject
 def greet_route(greeting_repository: GreetingRepository=dependency_manager.greeting_repository()):
     name = request.args.get('name')
 
     if not name:
-        return jsonify({"detail": "name parameter missing"}), 400
+        raise BadRequest()
 
-    try:
-        return jsonify(greet(name, greeting_repository)), 200
-    except SchemaError as e:
-        return jsonify({"detail": "Invalid or missing parameter"}), 400
-    except BadRequest as e:
-        return jsonify({"detail": "Well we didn't expect that!"}), 400
-    except Exception as e:
-        return jsonify({"detail": "The sky is falling!"}), 500
-
+    return jsonify(greet(name, greeting_repository)), 200
 
 def greet(name, greeting_repository: GreetingRepository):
 

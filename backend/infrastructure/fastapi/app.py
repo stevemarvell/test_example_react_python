@@ -1,9 +1,8 @@
 from fastapi import Depends
 from fastapi import FastAPI, Request
-from fastapi.exceptions import RequestValidationError
+from fastapi.exceptions import RequestValidationError, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from schema import SchemaError
-from werkzeug.exceptions import BadRequest, InternalServerError
 
 from application import greeting_by_name_query
 from di import dependency_manager
@@ -12,8 +11,11 @@ app = FastAPI()
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
-    raise BadRequest()
+    raise HTTPException(status_code=400, detail="Invalid or missing parameter")
 
+@app.exception_handler(SchemaError)
+async def schema_exception_handler(request: Request, exc: SchemaError):
+    raise HTTPException(status_code=400, detail="Invalid or missing parameter")
 
 @app.get("/greet")
 def greet(name, greeting_repository=Depends(dependency_manager.greeting_repository)):
@@ -21,11 +23,8 @@ def greet(name, greeting_repository=Depends(dependency_manager.greeting_reposito
         greeting = greeting_by_name_query.handle(greeting_repository, {"name": name})
         return {"greeting": greeting}
     except SchemaError as e:
-        raise BadRequest(e.args[0])
-    except BadRequest as e:
-        raise e
-    except Exception as e:
-        raise InternalServerError(e.args[0])
+        raise HTTPException(status_code=400, detail="Invalid or missing parameter")
+
 
 origins = [
     "http://localhost",
