@@ -2,7 +2,7 @@ import pytest
 from werkzeug.exceptions import HTTPException
 from unittest.mock import Mock
 
-from infrastructure.fastapi.routes.greeter import greet
+from infrastructure.fastapi.app import greet
 
 @pytest.fixture()
 def mock_greeting_repository():
