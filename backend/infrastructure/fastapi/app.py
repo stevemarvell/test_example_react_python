@@ -9,10 +9,6 @@ from di import dependency_manager
 
 app = FastAPI()
 
-@app.exception_handler(RequestValidationError)
-async def validation_exception_handler(request: Request, exc: RequestValidationError):
-    raise HTTPException(status_code=400, detail="Invalid or missing parameter")
-
 @app.get("/greet")
 def greet(name, greeting_repository=Depends(dependency_manager.greeting_repository)):
     try:
