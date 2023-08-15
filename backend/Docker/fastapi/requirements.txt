@@ -1,11 +1,13 @@
 fastapi
+
 schema
 uvicorn
 injector
 pytest
 pytest-bdd
 httpx
-
+werkzeug
 
 flask
 flask_cors
+flask_injector

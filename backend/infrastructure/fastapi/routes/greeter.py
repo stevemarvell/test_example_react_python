@@ -1,4 +1,5 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, Depends
+from werkzeug.exceptions import BadRequest, HTTPException
 from schema import SchemaError
 
 from application import greeting_by_name_query
@@ -13,6 +14,6 @@ def greet(name, greeting_repository=Depends(dependency_manager.greeting_reposito
         greeting = greeting_by_name_query.handle(greeting_repository, {"name": name})
         return {"greeting": greeting}
     except SchemaError as e:
-        raise HTTPException(status_code=400, detail="Invalid or missing parameter")
+        raise BadRequest()
     except Exception as e:
-        raise HTTPException(status_code=500, detail="The Sky is Falling")
+        raise HTTPException(code=500, detail="The Sky is Falling")
