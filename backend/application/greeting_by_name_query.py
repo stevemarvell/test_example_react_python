@@ -8,7 +8,6 @@ def validate(query):
     schema = Schema({
         'name': lambda n: isinstance(n, str) and len(n) >= 2
     })
-
     schema.validate(query)
 
 

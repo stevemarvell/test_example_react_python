@@ -1,6 +1,6 @@
 from click.testing import CliRunner
 
-from infrastructure.cli.greeter import main
+from infrastructure.cli.greeter_cli import main
 
 
 def test_greeting_by_name_query():
