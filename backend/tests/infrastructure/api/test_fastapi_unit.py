@@ -1,7 +1,7 @@
 from unittest.mock import Mock
 
 import pytest
-from fastapi import HTTPException
+from fastapi.exceptions import RequestValidationError
 
 from infrastructure.fastapi.app import greet
 
@@ -22,12 +22,11 @@ def test_greet_user_valid_name(mock_greeting_repository):
 
 @pytest.mark.fastapi
 def test_greet_user_invalid_name(mock_greeting_repository):
-    with pytest.raises(HTTPException):
+    with pytest.raises(RequestValidationError):
         greet("X", mock_greeting_repository)
 
 
 @pytest.mark.fastapi
 def test_greet_user_blank_name(mock_greeting_repository):
-    with pytest.raises(HTTPException):
+    with pytest.raises(RequestValidationError):
         greet(None, mock_greeting_repository)
-

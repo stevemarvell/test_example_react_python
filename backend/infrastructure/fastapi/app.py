@@ -13,17 +13,13 @@ app = FastAPI()
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     raise HTTPException(status_code=400, detail="Invalid or missing parameter")
 
-@app.exception_handler(SchemaError)
-async def schema_exception_handler(request: Request, exc: SchemaError):
-    raise HTTPException(status_code=400, detail="Invalid or missing parameter")
-
 @app.get("/greet")
 def greet(name, greeting_repository=Depends(dependency_manager.greeting_repository)):
     try:
         greeting = greeting_by_name_query.handle(greeting_repository, {"name": name})
         return {"greeting": greeting}
     except SchemaError as e:
-        raise HTTPException(status_code=400, detail="Invalid or missing parameter")
+        raise RequestValidationError("Invalid or missing parameter")
 
 
 origins = [
