@@ -5,3 +5,7 @@ injector
 pytest
 pytest-bdd
 httpx
+
+
+flask
+flask_cors
