@@ -6,6 +6,11 @@ from  infrastructure.flask.app import app
 scenarios("greeter.feature")
 
 @pytest.fixture
+def client():
+    with app.app_context():
+        yield app.test_client()
+
+@pytest.fixture
 def greeting():
     return "Hi" # for the purposes of the exercise
 
@@ -18,12 +23,10 @@ def step_set_custom_greeting(greeting):
     return greeting
 
 @when("they are greeted", target_fixture="actual_response")
-def step_run_app(name, greeting):
-    with app.test_request_context():
-        with app.test_client() as client:
-            response = client.get(f"/greet?name={name}")
-            assert response.status_code == 200
-            return response.json['greeting']
+def step_run_app(client, name, greeting):
+    response = client.get(f"/greet?name={name}")
+    assert response.status_code == 200
+    return response.json['greeting']
 
 #we can't test the actual actual response because we are not front end testing
 @then(parsers.parse('the greeting is "{expected_response}"'))
