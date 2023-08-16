@@ -4,13 +4,12 @@ import click
 from schema import SchemaError
 
 from application import greeting_by_name_query
-from di import dependency_manager
-
+import di
 
 @click.command()
 @click.argument('name')
 def main(name):
-    greeting_repository = dependency_manager.greeting_repository()
+    greeting_repository = di.get_greeting_repository()
 
     try:
         greeting = greeting_by_name_query.handle(greeting_repository, {"name": name})

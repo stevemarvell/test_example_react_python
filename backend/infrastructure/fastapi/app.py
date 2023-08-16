@@ -4,13 +4,13 @@ from fastapi.exceptions import RequestValidationError, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from schema import SchemaError
 
+import di
 from application import greeting_by_name_query
-from di import dependency_manager
 
 app = FastAPI()
 
 @app.get("/greet")
-def greet(name, greeting_repository=Depends(dependency_manager.greeting_repository)):
+def greet(name, greeting_repository=Depends(di.get_greeting_repository)):
     try:
         greeting = greeting_by_name_query.handle(greeting_repository, {"name": name})
         return {"greeting": greeting}
