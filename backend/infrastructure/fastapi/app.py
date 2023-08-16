@@ -10,7 +10,7 @@ from application import greeting_by_name_query
 app = FastAPI()
 
 @app.get("/greet")
-def greet(name, greeting_repository=Depends(di.dependency_manager.greeting_repository)):
+def greet(name, greeting_repository=Depends(di.get_greeting_repository)):
     try:
         greeting = greeting_by_name_query.handle(greeting_repository, {"name": name})
         return {"greeting": greeting}

@@ -1,19 +1,16 @@
-from injector import Injector, Module, Binder
+from injector import Injector
 
 from domain.greeting_repository import GreetingRepository
 from infrastructure.repositories.greeting_repository_array import GreetingRepositoryArray
+
 
 def configure(binder):
     # if test, dev, prod, etc
     binder.bind(GreetingRepository, to=GreetingRepositoryArray)
 
-class DependencyManager:
-    def __init__(self):
-        self.injector = Injector([configure])
 
-    def greeting_repository(self):
-        return self.injector.get(GreetingRepository)
+injector = Injector([configure])
 
-# Create a single instance of DependencyManager
-dependency_manager = DependencyManager()
 
+def get_greeting_repository():
+    return injector.get(GreetingRepository)

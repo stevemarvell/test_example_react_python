@@ -9,7 +9,7 @@ import di
 @click.command()
 @click.argument('name')
 def main(name):
-    greeting_repository = di.dependency_manager.greeting_repository()
+    greeting_repository = di.get_greeting_repository()
 
     try:
         greeting = greeting_by_name_query.handle(greeting_repository, {"name": name})
