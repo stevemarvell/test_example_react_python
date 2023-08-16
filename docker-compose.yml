@@ -1,16 +1,27 @@
 version: '3'
 services:
-  api:
+  fastapi:
     volumes:
       - ./backend:/app
+    environment:
+      - PYTHONPATH=/app
     build:
       context: backend
-      dockerfile: Dockerfile
+      dockerfile: Docker/fastapi/Dockerfile
       args:
         PYTHON_VERSION: ${PYTHON_VERSION}
     ports:
-      - "3000:3000"
-      - "4000:4000"
-      - "5000:5000"
       - "8000:8000"
+  flask:
+    volumes:
+      - ./backend:/app
+    environment:
+      - PYTHONPATH=/app
+    build:
+      context: backend
+      dockerfile: Docker/flask/Dockerfile
+      args:
+        PYTHON_VERSION: ${PYTHON_VERSION}
+    ports:
+      - "5000:5000"
 

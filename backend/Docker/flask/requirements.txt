@@ -1,0 +1,12 @@
+flask
+flask_cors
+flask_injector
+
+schema
+injector
+pytest
+pytest-bdd
+httpx
+werkzeug
+
+fastapi

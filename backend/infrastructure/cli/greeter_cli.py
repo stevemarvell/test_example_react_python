@@ -3,9 +3,8 @@ import sys
 import click
 from schema import SchemaError
 
-from di import dependency_manager
-
 from application import greeting_by_name_query
+from di import dependency_manager
 
 
 @click.command()
@@ -22,7 +21,6 @@ def main(name):
     except Exception as e:
         click.echo(f"Well, that didn't work at all!")
         sys.exit(2)
-
 
 
 if __name__ == '__main__':

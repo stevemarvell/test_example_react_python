@@ -7,7 +7,7 @@ from infrastructure.repositories.greeting_repository_array import GreetingReposi
 # uses test data file in _this_ local directory
 @pytest.fixture
 def repo():
-    return GreetingRepositoryArray(f'{os.path.dirname(__file__)}/test_greetings_array.json')
+    return GreetingRepositoryArray(f'{os.path.dirname(__file__)}/test_array_data.json')
 
 
 def test_array_known_name(repo):
