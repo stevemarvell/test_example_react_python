@@ -18,14 +18,7 @@ class DependencyManager:
 # Create a single instance of DependencyManager
 dependency_manager = DependencyManager()
 
-
-def inject_greeting_repository(fn):
-    @wraps(fn)
-    def decorated_view(*args, **kwargs):
-
-        repository = GreetingRepositoryArray()
-
-        kwargs["greeting_repository"] = repository
-        return fn(*args, **kwargs)
-
-    return decorated_view
+def configure(binder):
+    # if test, dev, prod, etc
+    repository = GreetingRepositoryArray()
+    binder.bind(GreetingRepository, to=repository)

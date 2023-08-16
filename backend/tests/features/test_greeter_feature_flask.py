@@ -1,13 +1,18 @@
 import pytest
+from flask.testing import FlaskClient
+from flask_injector import FlaskInjector
+from injector import inject
 from pytest_bdd import given, when, then, parsers, scenarios
 
-from  infrastructure.flask.app import app
+from domain.greeting_repository import GreetingRepository
+from infrastructure.flask.app import app, configure
 
 scenarios("greeter.feature")
 
 @pytest.fixture
-def client():
+def client() -> FlaskClient:
     with app.app_context():
+        FlaskInjector(app=app, modules=[configure])
         yield app.test_client()
 
 @pytest.fixture
