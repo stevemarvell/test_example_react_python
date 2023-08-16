@@ -1,12 +1,11 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from injector import inject
 from schema import SchemaError
 from werkzeug.exceptions import BadRequest
 
 
 from application import greeting_by_name_query
-from di import dependency_manager
+from di import dependency_manager, inject_greeting_repository
 from domain.greeting_repository import GreetingRepository
 
 app = Flask(__name__)
@@ -23,8 +22,8 @@ def handle_bad_request(e):
     return jsonify({"detail": "Well we didn't expect that!"}), 400
 
 @app.route('/greet', methods=['GET'])
-@inject
-def greet_route(greeting_repository: GreetingRepository=dependency_manager.greeting_repository()):
+@inject_greeting_repository
+def greet_route(greeting_repository: GreetingRepository):
     name = request.args.get('name')
 
     if not name:
